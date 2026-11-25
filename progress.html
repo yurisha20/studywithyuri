@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>study with yuri — my progress</title>
+
+  <!-- google fonts: quicksand for headings, inter for ui, jetbrains mono for timer & clock -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Quicksand:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- relative path to shared stylesheet for github pages -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="progress">
+  <!-- toast notification container -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- multi-page sticky navigation header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-dot"></span> study with yuri
+      </a>
+
+      <nav aria-label="primary navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">home</a></li>
+          <li><a href="focus.html">focus room</a></li>
+          <li><a href="planner.html">my planner</a></li>
+          <li><a href="study.html">study corner</a></li>
+          <li><a href="future.html">letter to my future self</a></li>
+          <li><a href="progress.html" class="active-page">my progress</a></li>
+          <li><a href="settings.html">settings</a></li>
+        </ul>
+      </nav>
+
+      <button
+        id="theme-toggle"
+        class="btn-pill btn-outline btn-sm"
+        aria-label="toggle dark mode"
+      >
+        🌙 night mode
+      </button>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="page-title-bar">
+        <div>
+          <span class="section-tag">page 06 / my progress</span>
+          <h1>study statistics, goals &amp; mood history</h1>
+        </div>
+      </div>
+
+      <div class="workspace-grid">
+        <div class="workspace-col">
+          <article class="card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">overview</span>
+                <h3>study statistics &amp; completed sessions</h3>
+              </div>
+            </div>
+            <div class="stats-summary-row">
+              <div class="stat-box">
+                <div id="stat-total-sessions" class="big-stat">0</div>
+                <div class="mini-tag">completed sessions</div>
+              </div>
+              <div class="stat-box">
+                <div id="stat-streak-days" class="big-stat">0d</div>
+                <div class="mini-tag">current streak</div>
+              </div>
+              <div class="stat-box">
+                <div id="stat-tasks-done" class="big-stat">0</div>
+                <div class="mini-tag">tasks finished</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">7-day rhythm</span>
+                <h3>weekly activity</h3>
+              </div>
+            </div>
+            <div id="weekly-bars" class="weekly-bars"></div>
+          </article>
+        </div>
+
+        <div class="workspace-col">
+          <article class="card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">milestones</span>
+                <h3>study goals &amp; achievements</h3>
+              </div>
+            </div>
+            <div id="badges-grid" class="badges-grid"></div>
+          </article>
+
+          <article class="card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">check-in log</span>
+                <h3>mood history</h3>
+              </div>
+            </div>
+            <div class="mood-log-picker">
+              <button class="badge-pill log-mood-btn" data-mood="🌸 calm &amp; cozy">🌸 calm &amp; cozy</button>
+              <button class="badge-pill log-mood-btn" data-mood="🍓 energized">🍓 energized</button>
+              <button class="badge-pill log-mood-btn" data-mood="🌷 sleepy">🌷 sleepy</button>
+              <button class="badge-pill log-mood-btn" data-mood="🎀 focused">🎀 focused</button>
+            </div>
+            <ul id="mood-history-list" class="mini-stack-list"></ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- minimal semantic footer -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© 2026 <strong>study with yuri</strong> • cozy multi-page student studio</p>
+      <div class="footer-links">
+        <a href="index.html">home</a>
+        <a href="focus.html">focus room</a>
+        <a href="planner.html">planner</a>
+        <a href="study.html">study corner</a>
+        <a href="future.html">letter to my future self</a>
+        <a href="progress.html">progress</a>
+        <a href="settings.html">settings</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- relative path to shared javascript -->
+  <script src="app.js"></script>
+</body>
+</html>

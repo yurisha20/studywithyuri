@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>study with yuri — my planner</title>
+
+  <!-- google fonts: quicksand for headings, inter for ui, jetbrains mono for timer & clock -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Quicksand:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- relative path to shared stylesheet for github pages -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="planner">
+  <!-- toast notification container -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- multi-page sticky navigation header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-dot"></span> study with yuri
+      </a>
+
+      <nav aria-label="primary navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">home</a></li>
+          <li><a href="focus.html">focus room</a></li>
+          <li><a href="planner.html" class="active-page">my planner</a></li>
+          <li><a href="study.html">study corner</a></li>
+          <li><a href="future.html">letter to my future self</a></li>
+          <li><a href="progress.html">my progress</a></li>
+          <li><a href="settings.html">settings</a></li>
+        </ul>
+      </nav>
+
+      <button
+        id="theme-toggle"
+        class="btn-pill btn-outline btn-sm"
+        aria-label="toggle dark mode"
+      >
+        🌙 night mode
+      </button>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="page-title-bar">
+        <div>
+          <span class="section-tag">page 03 / my planner</span>
+          <h1>academic calendar, assignments &amp; checklist</h1>
+        </div>
+      </div>
+
+      <div class="workspace-grid">
+        <div class="workspace-col">
+          <!-- academic calendar with month switcher -->
+          <article class="card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">schedule overview</span>
+                <h3>academic calendar</h3>
+              </div>
+              <div class="calendar-controls">
+                <button id="cal-prev-btn" class="btn-pill btn-outline btn-xs" aria-label="previous month">‹</button>
+                <select id="cal-month-select" class="select-pill select-sm" aria-label="select month">
+                  <option value="0">january</option>
+                  <option value="1">february</option>
+                  <option value="2">march</option>
+                  <option value="3">april</option>
+                  <option value="4">may</option>
+                  <option value="5">june</option>
+                  <option value="6">july</option>
+                  <option value="7">august</option>
+                  <option value="8">september</option>
+                  <option value="9">october</option>
+                  <option value="10">november</option>
+                  <option value="11">december</option>
+                </select>
+                <input type="number" id="cal-year-input" class="cal-year-input" min="2020" max="2035" value="2026" aria-label="calendar year" />
+                <button id="cal-next-btn" class="btn-pill btn-outline btn-xs" aria-label="next month">›</button>
+              </div>
+            </div>
+
+            <div class="calendar-weekdays">
+              <span>sun</span><span>mon</span><span>tue</span><span>wed</span><span>thu</span><span>fri</span><span>sat</span>
+            </div>
+            <div id="calendar-grid" class="calendar-grid"></div>
+            <p class="helper-micro-note">days with saved deadlines are highlighted in rose pink</p>
+          </article>
+
+          <!-- assignment tracker -->
+          <article class="card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">coursework &amp; deliverables</span>
+                <h3>assignment tracker</h3>
+              </div>
+              <span id="assignment-count-pill" class="mini-pill">0 items</span>
+            </div>
+
+            <form id="assignment-form" class="exam-input-row">
+              <input
+                type="text"
+                id="assignment-title"
+                placeholder="assignment or lab name..."
+                required
+              />
+              <input
+                type="text"
+                id="assignment-subject"
+                placeholder="subject..."
+                required
+              />
+              <button type="submit" class="btn-pill btn-primary btn-sm">+ add</button>
+            </form>
+
+            <ul id="assignment-list" class="mini-stack-list"></ul>
+          </article>
+        </div>
+
+        <div class="workspace-col">
+          <!-- full custom study checklist: add, edit, delete, complete, counts, %, low/medium/high, due date -->
+          <article class="card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">task manager</span>
+                <h3>custom study checklist</h3>
+              </div>
+              <span id="task-completion-pct" class="mini-pill">0% done</span>
+            </div>
+
+            <div id="task-summary-counts" class="task-summary-row">
+              <span id="task-completed-count" class="mini-pill">completed: 0</span>
+              <span id="task-remaining-count" class="mini-pill">remaining: 0</span>
+            </div>
+
+            <div class="goal-bar-track full-w task-pct-bar">
+              <div id="task-pct-fill" class="goal-bar-fill"></div>
+            </div>
+
+            <form id="task-form" class="task-builder-form">
+              <input
+                type="text"
+                id="task-input"
+                placeholder="add a new task..."
+                required
+              />
+              <div class="task-meta-row">
+                <select id="task-priority" aria-label="task priority">
+                  <option value="low">low</option>
+                  <option value="medium" selected>medium</option>
+                  <option value="high">high</option>
+                </select>
+                <input
+                  type="date"
+                  id="task-due-date"
+                  aria-label="optional due date"
+                />
+                <button type="submit" class="btn-pill btn-primary btn-sm">
+                  + add task
+                </button>
+              </div>
+            </form>
+
+            <ul id="task-list" class="task-list"></ul>
+          </article>
+
+          <!-- upcoming deadlines -->
+          <article class="card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">countdowns</span>
+                <h3>upcoming deadlines</h3>
+              </div>
+              <span id="exam-count-pill" class="mini-pill">0 deadlines</span>
+            </div>
+
+            <form id="exam-form" class="exam-input-row">
+              <input
+                type="text"
+                id="exam-title"
+                placeholder="exam or deadline title..."
+                required
+              />
+              <input
+                type="date"
+                id="exam-date"
+                aria-label="deadline date"
+                required
+              />
+              <button type="submit" class="btn-pill btn-primary btn-sm">+ add</button>
+            </form>
+
+            <ul id="exam-list" class="mini-stack-list"></ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- minimal semantic footer -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© 2026 <strong>study with yuri</strong> • cozy multi-page student studio</p>
+      <div class="footer-links">
+        <a href="index.html">home</a>
+        <a href="focus.html">focus room</a>
+        <a href="planner.html">planner</a>
+        <a href="study.html">study corner</a>
+        <a href="future.html">letter to my future self</a>
+        <a href="progress.html">progress</a>
+        <a href="settings.html">settings</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- relative path to shared javascript -->
+  <script src="app.js"></script>
+</body>
+</html>

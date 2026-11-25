@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>study with yuri — study corner</title>
+
+  <!-- google fonts: quicksand for headings, inter for ui, jetbrains mono for timer & clock -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Quicksand:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- relative path to shared stylesheet for github pages -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="study">
+  <!-- toast notification container -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- multi-page sticky navigation header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-dot"></span> study with yuri
+      </a>
+
+      <nav aria-label="primary navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">home</a></li>
+          <li><a href="focus.html">focus room</a></li>
+          <li><a href="planner.html">my planner</a></li>
+          <li><a href="study.html" class="active-page">study corner</a></li>
+          <li><a href="future.html">letter to my future self</a></li>
+          <li><a href="progress.html">my progress</a></li>
+          <li><a href="settings.html">settings</a></li>
+        </ul>
+      </nav>
+
+      <button
+        id="theme-toggle"
+        class="btn-pill btn-outline btn-sm"
+        aria-label="toggle dark mode"
+      >
+        🌙 night mode
+      </button>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="page-title-bar">
+        <div>
+          <span class="section-tag">page 04 / study corner</span>
+          <h1>quick notes, flashcards &amp; subjects</h1>
+        </div>
+      </div>
+
+      <div class="workspace-grid">
+        <div class="workspace-col">
+          <article class="card notes-card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">auto-saved</span>
+                <h3>quick notes</h3>
+              </div>
+              <button id="download-notes-btn" class="btn-pill btn-outline btn-xs">
+                ⬇ save .txt
+              </button>
+            </div>
+            <textarea
+              id="scratchpad"
+              rows="6"
+              placeholder="write lecture summaries, formulas, or study thoughts..."
+            ></textarea>
+          </article>
+
+          <article class="card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">folders &amp; tags</span>
+                <h3>subject organization</h3>
+              </div>
+            </div>
+            <form id="subject-form" class="inline-form">
+              <input
+                type="text"
+                id="subject-input"
+                placeholder="add subject (e.g., accounting, java)..."
+                required
+              />
+              <button type="submit" class="btn-pill btn-primary btn-sm">+ add</button>
+            </form>
+            <div id="subject-pool" class="chip-pool"></div>
+          </article>
+        </div>
+
+        <div class="workspace-col">
+          <article class="card">
+            <div class="card-header-row">
+              <div>
+                <span class="mini-tag">active recall</span>
+                <h3>flashcards</h3>
+              </div>
+              <span id="flashcard-count-pill" class="mini-pill">0 cards</span>
+            </div>
+
+            <form id="flashcard-form" class="stack-form">
+              <input
+                type="text"
+                id="flashcard-front"
+                placeholder="front: term or question..."
+                required
+              />
+              <input
+                type="text"
+                id="flashcard-back"
+                placeholder="back: definition or answer..."
+                required
+              />
+              <button type="submit" class="btn-pill btn-primary btn-sm">+ create flashcard</button>
+            </form>
+
+            <div id="flashcard-deck" class="flashcard-deck"></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- minimal semantic footer -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© 2026 <strong>study with yuri</strong> • cozy multi-page student studio</p>
+      <div class="footer-links">
+        <a href="index.html">home</a>
+        <a href="focus.html">focus room</a>
+        <a href="planner.html">planner</a>
+        <a href="study.html">study corner</a>
+        <a href="future.html">letter to my future self</a>
+        <a href="progress.html">progress</a>
+        <a href="settings.html">settings</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- relative path to shared javascript -->
+  <script src="app.js"></script>
+</body>
+</html>
